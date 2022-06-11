@@ -3,10 +3,31 @@ import pandas
 import random
 
 BACKGROUND_COLOR = "#B1DDC6"
+to_learn = {}
+current_card = {}
+
+
+
+# FUNCTION TO PISK NEXT CARD
+def next_card():
+    global current_card, flip_timer
+    window.after_cancel(flip_timer)
+    current_card = random.choice(to_learn)
+    canvas.itemconfig(card_title, text="French", fill="black")
+    canvas.itemconfig(card_word, text=current_card["French"], fill="black")
+    canvas.itemconfig(card_background, image=card_front_img)
+
+
+# FLIP CARD FUNCTION
+def flip_card():
+    canvas.itemconfig(card_title, text="English", fill="white")
+    canvas.itemconfig(card_word, text=current_card["English"], fill="white")
+    canvas.itemconfig(card_background, image=card_back_img)
+
 
 # CREATE GUI
 window = Tk()
-window.title("Flashy")
+window.title("PoliFino Flash cards")
 window.config(padx=50, pady=50, bg=BACKGROUND_COLOR)
 
 flip_timer = window.after(4000, func='')
