@@ -33,7 +33,6 @@ def flip_card():
 # SAVE WORDS THAT ARE ALREADY LEARNT AND CREATE LIST OF WORDS TO LEARN
 def is_known():
     to_learn.remove(current_card)
-    print(len(to_learn))
     data = pandas.DataFrame(to_learn)
     data.to_csv("data/words_to_learn.csv", index=False)
     next_card()
